@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Producto — SIGAPI</title>
+<link rel="icon" href="Gemini_Generated_Image_fcsvmpfcsvmpfcsv-removebg-preview.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+  :root{
+    --bg:#0B0713;
+    --bg-elevated:#130A22;
+    --card:#1B1130;
+    --card-hi:#221740;
+    --border:rgba(255,255,255,0.09);
+    --border-soft:rgba(255,255,255,0.06);
+    --text-primary:#F6F3FF;
+    --text-secondary:#B7ACDA;
+    --text-muted:#7A6FA0;
+
+    --violet:#8B5CF6;
+    --violet-hi:#A78BFA;
+    --pink:#EC4899;
+    --pink-hi:#F472B6;
+    --cyan:#22D3EE;
+    --amber:#FBBF24;
+
+    --grad-brand: linear-gradient(135deg, #8B5CF6 0%, #EC4899 60%, #FB923C 100%);
+    --grad-btn: linear-gradient(135deg, #8B5CF6 0%, #D946EF 55%, #EC4899 100%);
+    --accent-soft: rgba(139,92,246,0.14);
+    --glow-violet: rgba(139,92,246,0.35);
+    --glow-pink: rgba(236,72,153,0.30);
+    --glow-cyan: rgba(34,211,238,0.28);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text-primary);
+    font-family:'IBM Plex Sans',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.font-display{font-family:'Sora',sans-serif;}
+  .font-mono{font-family:'IBM Plex Mono',monospace;}
+
+  .grid-texture{
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(183,172,218,0.16) 1px, transparent 0);
+    background-size:28px 28px;
+  }
+
+  .gradient-text{
+    background:var(--grad-brand);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+
+  .card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:22px;
+  }
+  .card-hover{transition:border-color .25s ease, transform .25s ease, box-shadow .25s ease;}
+  .card-hover:hover{border-color:rgba(236,72,153,0.45); transform:translateY(-3px); box-shadow:0 16px 40px -20px var(--glow-pink);}
+
+  .btn-primary{
+    background:var(--grad-btn);
+    color:#fff;
+    transition:filter .2s ease, box-shadow .2s ease, transform .2s ease;
+    box-shadow:0 10px 30px -12px var(--glow-pink);
+  }
+  .btn-primary:hover{filter:brightness(1.12); box-shadow:0 14px 36px -10px var(--glow-pink); transform:translateY(-1px);}
+
+  .btn-ghost{
+    border:1px solid var(--border);
+    color:var(--text-primary);
+    transition:border-color .2s ease, background .2s ease;
+  }
+  .btn-ghost:hover{border-color:var(--violet-hi); background:var(--accent-soft);}
+
+  .nav-link{color:var(--text-secondary); transition:color .2s ease; position:relative;}
+  .nav-link:hover{color:var(--text-primary);}
+  .nav-link.is-active{color:var(--text-primary); font-weight:600;}
+  .nav-link.is-active::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:-8px; height:2px;
+    background:var(--grad-brand); border-radius:2px;
+  }
+  .mobile-link.is-active{color:var(--text-primary); font-weight:600;}
+
+  .glow-orb{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(90px);
+    pointer-events:none;
+  }
+
+  ::selection{background:var(--pink); color:#fff;}
+
+  .whatsapp-float{
+    position:fixed;
+    right:1.25rem;
+    bottom:1.25rem;
+    z-index:50;
+    box-shadow:0 10px 34px -8px rgba(0,0,0,0.55), 0 0 0 0 var(--glow-violet);
+  }
+  .whatsapp-float:hover{box-shadow:0 12px 40px -6px rgba(0,0,0,0.6), 0 0 30px -4px var(--glow-violet);}
+
+  .icon-box{
+    background:linear-gradient(135deg, rgba(139,92,246,0.22), rgba(236,72,153,0.16));
+    border:1px solid var(--border);
+  }
+
+  .chip{
+    background:var(--bg-elevated);
+    border:1px solid var(--border-soft);
+    color:var(--text-muted);
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation:none !important; transition:none !important;}
+  }
+
+  .reveal-line{
+    stroke-dasharray:900;
+    stroke-dashoffset:900;
+    animation:draw 2.2s ease-out forwards .3s;
+  }
+  @keyframes draw{ to{ stroke-dashoffset:0; } }
+
+  @media (max-width:640px){
+    .bento-span-2{grid-column:span 1 / span 1 !important;}
+  }
+
+  .reveal-el{
+    opacity:0;
+    transform:translateY(16px);
+    transition:opacity .6s ease, transform .6s ease;
+  }
+  .reveal-el.in-view{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+  /* ---------- Carrusel ---------- */
+  .carousel{
+    position:relative;
+    border-radius:22px;
+    overflow:hidden;
+    border:1px solid var(--border);
+    background:var(--card);
+  }
+  .carousel-track{
+    display:flex;
+    transition:transform .5s cubic-bezier(.65,.05,.36,1);
+  }
+  .carousel-slide{
+    min-width:100%;
+    aspect-ratio:16/9;
+    position:relative;
+  }
+  .carousel-slide img{
+    width:100%; height:100%; object-fit:cover; display:block;
+  }
+  .carousel-slide.img-fallback img{ display:none; }
+  .carousel-fallback{
+    display:none;
+    position:absolute; inset:0;
+    align-items:center; justify-content:center;
+    flex-direction:column; gap:.75rem;
+    background:linear-gradient(135deg, rgba(139,92,246,0.35), rgba(236,72,153,0.30), rgba(251,146,60,0.25));
+    text-align:center; padding:1.5rem;
+  }
+  .carousel-slide.img-fallback .carousel-fallback{ display:flex; }
+  .carousel-btn{
+    position:absolute; top:50%; transform:translateY(-50%);
+    width:44px; height:44px; border-radius:9999px;
+    display:flex; align-items:center; justify-content:center;
+    background:rgba(11,7,19,0.55); border:1px solid var(--border);
+    color:#fff; backdrop-filter:blur(6px);
+    transition:background .2s ease, border-color .2s ease;
+    z-index:5;
+  }
+  .carousel-btn:hover{ background:rgba(11,7,19,0.8); border-color:var(--pink-hi); }
+  .carousel-prev{ left:14px; }
+  .carousel-next{ right:14px; }
+  .carousel-dots{
+    position:absolute; bottom:14px; left:0; right:0;
+    display:flex; align-items:center; justify-content:center; gap:8px;
+    z-index:5;
+  }
+  .carousel-dot{
+    width:8px; height:8px; border-radius:9999px;
+    background:rgba(255,255,255,0.35);
+    border:none; cursor:pointer;
+    transition:background .2s ease, width .2s ease;
+  }
+  .carousel-dot.is-active{
+    background:var(--grad-brand);
+    width:22px;
+  }
+</style>
+
+</head>
+<body class="antialiased">
+
+<!-- ============ HEADER ============ -->
+<header class="sticky top-0 z-40 border-b" style="background:rgba(11,7,19,0.82); backdrop-filter:blur(10px); border-color:var(--border-soft);">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 h-20 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-2.5">
+      <span class="font-display font-bold text-lg tracking-tight gradient-text hidden sm:inline">SIGAPI</span>
+    </a>
+
+    <nav class="hidden lg:flex items-center gap-7 text-[14.5px]">
+      <a href="index.html" class="nav-link">Inicio</a>
+      <a href="nosotros.html" class="nav-link">Quiénes somos</a>
+      <a href="mision.html" class="nav-link">Misión y visión</a>
+      <a href="producto.html" class="nav-link is-active">Producto</a>
+      <a href="servicios.html" class="nav-link">Servicios</a>
+      <a href="contacto.html" class="nav-link">Contacto</a>
+    </nav>
+
+    <a href="https://wa.me/50370000000?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20SIGAPI"
+       target="_blank" rel="noopener"
+       class="btn-primary hidden sm:inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A7.85 7.85 0 0 0 12.03 4C7.7 4 4.18 7.5 4.18 11.83c0 1.4.37 2.76 1.06 3.96L4 20l4.32-1.13a7.9 7.9 0 0 0 3.7.94h.01c4.33 0 7.85-3.5 7.85-7.83a7.8 7.8 0 0 0-2.28-5.66Zm-5.57 12.04h-.01a6.53 6.53 0 0 1-3.33-.91l-.24-.14-2.48.65.66-2.42-.16-.25a6.52 6.52 0 0 1-1-3.46c0-3.6 2.94-6.53 6.57-6.53a6.5 6.5 0 0 1 4.63 1.92 6.47 6.47 0 0 1 1.92 4.61c0 3.6-2.95 6.53-6.56 6.53Zm3.59-4.9c-.2-.1-1.17-.58-1.35-.64-.18-.07-.31-.1-.45.1-.13.19-.51.64-.63.78-.11.13-.23.15-.43.05-.2-.1-.83-.31-1.58-.98-.58-.52-.98-1.16-1.09-1.36-.11-.2-.01-.3.09-.4.09-.1.2-.24.3-.36.1-.13.13-.2.2-.35.06-.14.03-.27-.02-.37-.05-.1-.45-1.09-.62-1.49-.16-.39-.33-.34-.45-.34h-.38c-.13 0-.35.05-.53.24-.18.19-.7.68-.7 1.66s.72 1.93.82 2.06c.1.14 1.4 2.16 3.42 3.02.48.21.85.33 1.14.42.48.15.92.13 1.26.08.39-.06 1.17-.48 1.34-.94.16-.46.16-.85.11-.94-.05-.09-.18-.14-.38-.24Z"/></svg>
+      WhatsApp
+    </a>
+
+    <button id="menuToggle" aria-label="Abrir menú" aria-expanded="false" class="lg:hidden w-10 h-10 rounded-lg flex items-center justify-center" style="border:1px solid var(--border);">
+      <svg id="iconMenu" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="var(--text-primary)" stroke-width="2" stroke-linecap="round"/></svg>
+      <svg id="iconClose" width="18" height="18" viewBox="0 0 24 24" fill="none" class="hidden"><path d="M6 6l12 12M18 6L6 18" stroke="var(--text-primary)" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+
+  <!-- Mobile nav panel -->
+  <div id="mobileMenu" class="lg:hidden hidden border-t" style="border-color:var(--border-soft); background:var(--bg-elevated);">
+    <nav class="max-w-7xl mx-auto px-6 py-5 flex flex-col gap-1 text-[15px]">
+      <a href="index.html" class="mobile-link nav-link py-2.5">Inicio</a>
+      <a href="nosotros.html" class="mobile-link nav-link py-2.5">Quiénes somos</a>
+      <a href="mision.html" class="mobile-link nav-link py-2.5">Misión y visión</a>
+      <a href="producto.html" class="mobile-link nav-link py-2.5 is-active">Producto</a>
+      <a href="servicios.html" class="mobile-link nav-link py-2.5">Servicios</a>
+      <a href="contacto.html" class="mobile-link nav-link py-2.5">Contacto</a>
+      <a href="https://wa.me/50370000000?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20SIGAPI"
+         target="_blank" rel="noopener"
+         class="btn-primary mt-3 inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-medium">
+        Contactar por WhatsApp
+      </a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ PRODUCTO ============ -->
+<section id="producto-intro" class="relative max-w-7xl mx-auto px-6 lg:px-10 py-20 lg:py-24 overflow-hidden">
+  <div class="glow-orb w-[460px] h-[460px] -top-24 -right-24" style="background:var(--glow-pink); opacity:.32;"></div>
+
+  <div class="relative grid lg:grid-cols-12 gap-10 items-start mb-14">
+    <div class="lg:col-span-6">
+      <div class="inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 mb-6 text-sm" style="background:var(--card); border:1px solid var(--border); color:var(--text-secondary);">
+        <span class="w-1.5 h-1.5 rounded-full" style="background:var(--cyan);"></span>
+        Nuestro proyecto
+      </div>
+      <h1 class="font-display font-bold text-3xl sm:text-4xl leading-tight mb-5">
+        SIGAPI: <span class="gradient-text">el producto detrás del proyecto</span>
+      </h1>
+      <p class="text-lg" style="color:var(--text-secondary);">
+        SIGAPI es la plataforma que desarrollamos para que cualquier negocio pueda ver su inventario
+        con claridad y anticiparse a lo que va a necesitar, en lugar de reaccionar cuando ya es tarde.
+        No es solo un software: es el resultado de meses de trabajo, pruebas y ajustes pensados para
+        resolver un problema real de compras e inventario.
+      </p>
+    </div>
+    <div class="lg:col-span-6">
+      <div class="card p-8">
+        <p class="font-mono text-sm mb-3" style="color:var(--cyan);">Sobre el proyecto</p>
+        <p style="color:var(--text-secondary);" class="mb-4">
+          Diseñamos SIGAPI como un sistema modular: se conecta a los movimientos de inventario de un
+          negocio, aprende de su historial y entrega proyecciones claras sobre qué comprar, cuándo
+          hacerlo y en qué cantidad.
+        </p>
+        <p style="color:var(--text-secondary);">
+          El proyecto sigue en constante evolución: cada negocio con el que hablamos nos da una nueva
+          idea de mejora, y la incorporamos a la plataforma.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="relative grid grid-cols-1 md:grid-cols-4 gap-5">
+
+    <div class="card card-hover reveal-el p-9 md:col-span-2 md:row-span-2 flex flex-col justify-between bento-span-2">
+      <div>
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-6 icon-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 3v18h18" stroke="var(--pink-hi)" stroke-width="2" stroke-linecap="round"/><path d="M7 15l4-5 3 3 5-7" stroke="var(--pink-hi)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 class="font-display font-semibold text-2xl mb-3">Predicción de demanda con IA</h3>
+        <p style="color:var(--text-secondary);" class="mb-6">
+          Modelos entrenados con tu propio historial de movimientos estiman cuánto vas a necesitar de
+          cada artículo, con cuánta anticipación reabastecer y qué margen de error manejar en cada
+          estimación.
+        </p>
+      </div>
+      <div class="flex items-center gap-3 font-mono text-sm flex-wrap" style="color:var(--text-muted);">
+        <span class="chip px-2.5 py-1 rounded-md">series de tiempo</span>
+        <span class="chip px-2.5 py-1 rounded-md">estacionalidad</span>
+      </div>
+    </div>
+
+    <div class="card card-hover reveal-el p-7">
+      <div class="w-10 h-10 rounded-lg flex items-center justify-center mb-5 icon-box">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 20V10M12 20V4M20 20V14" stroke="var(--cyan)" stroke-width="2" stroke-linecap="round"/></svg>
+      </div>
+      <h3 class="font-display font-semibold text-lg mb-2">Análisis en tiempo real</h3>
+      <p class="text-sm" style="color:var(--text-secondary);">
+        Visibilidad continua de existencias, rotación y consumo en un solo panel.
+      </p>
+    </div>
+
+    <div class="card card-hover reveal-el p-7">
+      <div class="w-10 h-10 rounded-lg flex items-center justify-center mb-5 icon-box">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M13 3L4 14h6l-1 7 9-11h-6l1-7Z" stroke="var(--amber)" stroke-width="2" stroke-linejoin="round"/></svg>
+      </div>
+      <h3 class="font-display font-semibold text-lg mb-2">Automatización de inventario</h3>
+      <p class="text-sm" style="color:var(--text-secondary);">
+        Reglas de reabastecimiento que se disparan solas cuando el stock cruza el umbral definido.
+      </p>
+    </div>
+
+    <div class="card card-hover reveal-el p-7">
+      <div class="w-10 h-10 rounded-lg flex items-center justify-center mb-5 icon-box">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 3h9l5 5v13H6V3Z" stroke="var(--violet-hi)" stroke-width="2" stroke-linejoin="round"/><path d="M9 12h6M9 16h6" stroke="var(--violet-hi)" stroke-width="2" stroke-linecap="round"/></svg>
+      </div>
+      <h3 class="font-display font-semibold text-lg mb-2">Reportes ejecutivos</h3>
+      <p class="text-sm" style="color:var(--text-secondary);">
+        Resúmenes claros para dirección, listos para exportar y compartir.
+      </p>
+    </div>
+
+    <div class="card card-hover reveal-el p-7">
+      <div class="w-10 h-10 rounded-lg flex items-center justify-center mb-5 icon-box">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 4a5 5 0 0 1 5 5v3l1.7 3.4a1 1 0 0 1-.9 1.6H6.2a1 1 0 0 1-.9-1.6L7 12V9a5 5 0 0 1 5-5Z" stroke="var(--pink-hi)" stroke-width="2" stroke-linejoin="round"/><path d="M10 19a2 2 0 0 0 4 0" stroke="var(--pink-hi)" stroke-width="2" stroke-linecap="round"/></svg>
+      </div>
+      <h3 class="font-display font-semibold text-lg mb-2">Alertas inteligentes</h3>
+      <p class="text-sm" style="color:var(--text-secondary);">
+        Avisos antes de un quiebre de stock o un exceso de inventario inmovilizado.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ CARRUSEL DE IMÁGENES DEL PRODUCTO ============ -->
+<section id="producto-galeria" class="relative py-16 lg:py-20" style="background:var(--bg-elevated); border-top:1px solid var(--border-soft); border-bottom:1px solid var(--border-soft);">
+  <div class="max-w-5xl mx-auto px-6 lg:px-10">
+    <div class="mb-8 text-center">
+      <p class="font-mono text-sm mb-2" style="color:var(--cyan);">Galería</p>
+      <h2 class="font-display font-bold text-2xl sm:text-3xl">Nuestro producto <span class="gradient-text">en imágenes</span></h2>
+    </div>
+
+    <div class="carousel reveal-el">
+      <div class="carousel-track">
+        
+      <div class="carousel-slide">
+        <img src="img/WhatsApp Image 2026-09-29 at 1.25.24 PM.jpeg" alt="Panel de inventario">
+        <div class="carousel-fallback">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="#fff" stroke-width="1.6"/><circle cx="9" cy="10" r="1.6" fill="#fff"/><path d="M21 16l-5.5-5.5L9 17" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <p class="font-display font-semibold text-white">Panel de inventario</p>
+          <p class="text-white/80 text-xs font-mono">Coloca aquí producto-1.jpg</p>
+        </div>
+      </div>
+
+      <div class="carousel-slide">
+        <img src="img/WhatsApp Image 2026-09-29 at 1.31.27 PM.jpeg" alt="Predicción de demanda">
+        <div class="carousel-fallback">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="#fff" stroke-width="1.6"/><circle cx="9" cy="10" r="1.6" fill="#fff"/><path d="M21 16l-5.5-5.5L9 17" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <p class="font-display font-semibold text-white">Predicción de demanda</p>
+          <p class="text-white/80 text-xs font-mono">Coloca aquí producto-2.jpg</p>
+        </div>
+      </div>
+
+      <div class="carousel-slide">
+        <img src="img/WhatsApp Image 2026-09-29 at 1.32.10 PM.jpeg" alt="Alertas y reportes">
+        <div class="carousel-fallback">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="#fff" stroke-width="1.6"/><circle cx="9" cy="10" r="1.6" fill="#fff"/><path d="M21 16l-5.5-5.5L9 17" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <p class="font-display font-semibold text-white">Alertas y reportes</p>
+          <p class="text-white/80 text-xs font-mono">Coloca aquí producto-3.jpg</p>
+        </div>
+      </div>
+
+      <div class="carousel-slide">
+        <img src="img/WhatsApp Image 2026-09-29 at 1.32.57 PM.jpeg" alt="SIGAPI en acción">
+        <div class="carousel-fallback">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="#fff" stroke-width="1.6"/><circle cx="9" cy="10" r="1.6" fill="#fff"/><path d="M21 16l-5.5-5.5L9 17" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <p class="font-display font-semibold text-white">SIGAPI en acción</p>
+          <p class="text-white/80 text-xs font-mono">Coloca aquí producto-4.jpg</p>
+        </div>
+      </div>
+      </div>
+      <button class="carousel-btn carousel-prev" aria-label="Imagen anterior">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="carousel-btn carousel-next" aria-label="Siguiente imagen">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="carousel-dots">
+        <button class="carousel-dot is-active" aria-label="Ir a la imagen 1"></button>
+        <button class="carousel-dot" aria-label="Ir a la imagen 2"></button>
+        <button class="carousel-dot" aria-label="Ir a la imagen 3"></button>
+        <button class="carousel-dot" aria-label="Ir a la imagen 4"></button>
+      </div>
+    </div>
+    <p class="text-center text-xs font-mono mt-4" style="color:var(--text-muted);">
+    </p>
+  </div>
+</section>
+
+<footer class="border-t" style="border-color:var(--border-soft);">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm" style="color:var(--text-muted);">
+    <p>&copy; 2026 SIGAPI. Todos los derechos reservados.</p>
+    <p class="font-mono">Gestión inteligente de inventario</p>
+  </div>
+</footer>
+
+<!-- Floating WhatsApp button -->
+<a href="https://wa.me/50370000000?text=Hola%2C%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20SIGAPI"
+   target="_blank" rel="noopener"
+   aria-label="Contactar por WhatsApp"
+   class="whatsapp-float w-14 h-14 rounded-full flex items-center justify-center"
+   style="background:#25D366;">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M17.6 6.32A7.85 7.85 0 0 0 12.03 4C7.7 4 4.18 7.5 4.18 11.83c0 1.4.37 2.76 1.06 3.96L4 20l4.32-1.13a7.9 7.9 0 0 0 3.7.94h.01c4.33 0 7.85-3.5 7.85-7.83a7.8 7.8 0 0 0-2.28-5.66Zm-5.57 12.04h-.01a6.53 6.53 0 0 1-3.33-.91l-.24-.14-2.48.65.66-2.42-.16-.25a6.52 6.52 0 0 1-1-3.46c0-3.6 2.94-6.53 6.57-6.53a6.5 6.5 0 0 1 4.63 1.92 6.47 6.47 0 0 1 1.92 4.61c0 3.6-2.95 6.53-6.56 6.53Zm3.59-4.9c-.2-.1-1.17-.58-1.35-.64-.18-.07-.31-.1-.45.1-.13.19-.51.64-.63.78-.11.13-.23.15-.43.05-.2-.1-.83-.31-1.58-.98-.58-.52-.98-1.16-1.09-1.36-.11-.2-.01-.3.09-.4.09-.1.2-.24.3-.36.1-.13.13-.2.2-.35.06-.14.03-.27-.02-.37-.05-.1-.45-1.09-.62-1.49-.16-.39-.33-.34-.45-.34h-.38c-.13 0-.35.05-.53.24-.18.19-.7.68-.7 1.66s.72 1.93.82 2.06c.1.14 1.4 2.16 3.42 3.02.48.21.85.33 1.14.42.48.15.92.13 1.26.08.39-.06 1.17-.48 1.34-.94.16-.46.16-.85.11-.94-.05-.09-.18-.14-.38-.24Z"/></svg>
+</a>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ---------- Menú móvil ---------- */
+  var menuToggle = document.getElementById("menuToggle");
+  var mobileMenu = document.getElementById("mobileMenu");
+  var iconMenu = document.getElementById("iconMenu");
+  var iconClose = document.getElementById("iconClose");
+
+  function closeMenu() {
+    mobileMenu.classList.add("hidden");
+    iconMenu.classList.remove("hidden");
+    iconClose.classList.add("hidden");
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-label", "Abrir menú");
+  }
+
+  function openMenu() {
+    mobileMenu.classList.remove("hidden");
+    iconMenu.classList.add("hidden");
+    iconClose.classList.remove("hidden");
+    menuToggle.setAttribute("aria-expanded", "true");
+    menuToggle.setAttribute("aria-label", "Cerrar menú");
+  }
+
+  if (menuToggle) {
+    menuToggle.addEventListener("click", function () {
+      var isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+      isOpen ? closeMenu() : openMenu();
+    });
+  }
+
+  document.querySelectorAll(".mobile-link").forEach(function (link) {
+    link.addEventListener("click", closeMenu);
+  });
+
+  window.addEventListener("resize", function () {
+    if (window.innerWidth >= 1024) closeMenu();
+  });
+
+  /* ---------- Animación de aparición al hacer scroll ---------- */
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var revealEls = document.querySelectorAll(".reveal-el");
+
+  if (reduceMotion || !("IntersectionObserver" in window)) {
+    revealEls.forEach(function (el) { el.classList.add("in-view"); });
+  } else {
+    var revealObserver = new IntersectionObserver(
+      function (entries, obs) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+            obs.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    revealEls.forEach(function (el) { revealObserver.observe(el); });
+  }
+
+  /* ---------- Carrusel ---------- */
+  document.querySelectorAll(".carousel").forEach(function (carousel) {
+    var track = carousel.querySelector(".carousel-track");
+    var slides = carousel.querySelectorAll(".carousel-slide");
+    var dots = carousel.querySelectorAll(".carousel-dot");
+    var prevBtn = carousel.querySelector(".carousel-prev");
+    var nextBtn = carousel.querySelector(".carousel-next");
+    var index = 0;
+
+    function goTo(i) {
+      index = (i + slides.length) % slides.length;
+      track.style.transform = "translateX(-" + (index * 100) + "%)";
+      dots.forEach(function (d, di) { d.classList.toggle("is-active", di === index); });
+    }
+
+    if (prevBtn) prevBtn.addEventListener("click", function () { goTo(index - 1); });
+    if (nextBtn) nextBtn.addEventListener("click", function () { goTo(index + 1); });
+    dots.forEach(function (d, di) { d.addEventListener("click", function () { goTo(di); }); });
+
+    // marca como fallback las imágenes que no cargan
+    slides.forEach(function (slide) {
+      var img = slide.querySelector("img");
+      if (img) {
+        img.addEventListener("error", function () { slide.classList.add("img-fallback"); });
+      }
+    });
+
+    goTo(0);
+  });
+})();
+</script>
+</body>
+</html>
